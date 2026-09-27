@@ -48,7 +48,7 @@ Temukan error yang muncul dan **perbaiki satu per satu**. **MATIKAN INTERNET** j
 
 Setiap error yang ditemukan **wajib dicatat** dengan format:
 
-| No | Bagian | Error | Penyebab | Perbaikan | Hasil |
+| No | Bagian File Terkait | Nama/Detail Error | Penyebab | Perbaikan | Waktu Penyelesaian |
 |---:|---|---|---|---|---|
 | 1 | | | | | |
 | 2 | | | | | |
@@ -73,6 +73,6 @@ Tugas dinyatakan selesai jika:
 - [ ] Semua error berhasil diperbaiki
 - [ ] Fitur utama Todo dapat digunakan
 - [ ] Setiap temuan error dicatat di buku
-- [ ] Catatan menjelaskan **error, penyebab, perbaikan, dan hasil**
+- [ ] Catatan menjelaskan **error, penyebab, dan perbaikan**
 
 **Fokus tugas bukan hanya membuat aplikasi berjalan, tetapi memahami proses menemukan dan memperbaiki error.**

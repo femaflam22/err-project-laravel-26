@@ -13,6 +13,21 @@ class TodoController extends Controller
         return view('todos.index', compact('todo'));
     }
 
+    public function data()
+    {
+        return DataTables::of(Todo::query())
+            ->editColumn('attachment', function ($row) {
+                return $row->attachment
+                    ? '<a href="' . asset('storage/' . $row->attachment) . '" target="_blank">Lihat</a>'
+                    : '-';
+            })
+            ->addColumn('action', function ($row) {
+                return '<a href="' . route('todos.edit', $row->id) . '">Edit</a>';
+            })
+            ->rawColumns(['attachment', 'action'])
+            ->make(true);
+    }
+
     public function create()
     {
         return view('todos.create');
@@ -23,11 +38,15 @@ class TodoController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable|string',
+            'attachment' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
         ]);
+
+        $path = $request->file('attachment')->store('attachments', 'public');
 
         Todo::create([
             'title' => $request->title,
             'description' => $request->description,
+            'attachment' => $path,
             'is_completed' => false,
         ]);
 

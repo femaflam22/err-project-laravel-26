@@ -59,12 +59,7 @@ Setiap error yang ditemukan **wajib dicatat** dengan format:
 | 7 | | | | | |
 | 8 | | | | | |
 
-### Yang harus ditulis
-
-**Error** → pesan error yang muncul  
-**Penyebab** → mengapa error terjadi  
-**Perbaikan** → apa yang kamu ubah  
-**Hasil** → kondisi setelah diperbaiki
+Terdapat sebanyak **24 error**
 
 ## 4. Ketentuan Selesai
 

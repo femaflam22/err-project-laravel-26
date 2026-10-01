@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('attachment')->nullable();
-            $table->boolean('is_compelted')->default(false);
+            $table->string('status')->default('pending');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

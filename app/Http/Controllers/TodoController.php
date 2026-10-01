@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todo = Todo::all();
+        $todo = Todo::orderByRaw("FIELD(statuss, 'todo', 'doing', 'done')")->get();
         return view('todos.index', compact('todo'));
     }
 
@@ -22,7 +22,7 @@ class TodoController extends Controller
                     : '-';
             })
             ->addColumn('action', function ($row) {
-                return '<a href="' . route('todos.edit', $row->id) . '">Edit</a>';
+                return '<a href="' . route('todos.edit', $row->id) . '" class="btn btn-sm btn-outline-secondary">Edit</a>';
             })
             ->rawColumns(['attachment', 'action'])
             ->make(true);
@@ -41,13 +41,15 @@ class TodoController extends Controller
             'attachment' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
         ]);
 
-        $path = $request->file('attachment')->store('attachments', 'public');
+        $path = null;
+        if ($request->hasFile('attachment')) {
+            $path = $request->file('attachment')->store('attachments', 'public');
+        }
 
         Todo::create([
             'title' => $request->title,
             'description' => $request->description,
             'attachment' => $path,
-            'is_completed' => false,
         ]);
 
         return redirect()->route('todos.index');
@@ -67,6 +69,18 @@ class TodoController extends Controller
 
         $todo = Todo::find($id);
         $todo->update($request->all());
+
+        return redirect()->route('todos.index');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'new_status' => 'required|in:todo,doing,done',
+        ]);
+
+        $todo = Todo::find($id);
+        $todo->status = $request->status;
 
         return redirect()->route('todos.index');
     }

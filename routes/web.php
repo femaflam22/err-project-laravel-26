@@ -9,4 +9,5 @@ Route::get('/todos/create', [TodoController::class, 'create'])->name('todos.crea
 Route::post('/todos', [TodoController::class, 'store'])->name('todos.store');
 Route::get('/todos/{id}/edit', [TodoController::class, 'edit'])->name('todos.edit');
 Route::patch('/todos/{id}', [TodoController::class, 'update'])->name('todos.update');
+Route::get('/todos/{id}/status', [TodoController::class, 'updateStatus'])->name('todos.status');
 Route::post('/todos/{id}', [TodoController::class, 'destroy'])->name('todos.destroy');

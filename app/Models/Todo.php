@@ -12,6 +12,6 @@ class Todo extends Model
         'title',
         'description',
         'attachment',
-        'is_completed',
+        'status',
     ];
 }
